@@ -7,7 +7,7 @@ namespace Leads.WebAPI.Controllers;
 [ApiController]
 public class AuthController(IMediator mediator) : ControllerBase
 {
-    [HttpPost("auth")]
+    [HttpPost]
     public async Task<IActionResult> Login(
         [FromBody] object request,
         CancellationToken cancellationToken)
