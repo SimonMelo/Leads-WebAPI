@@ -10,12 +10,12 @@ namespace Leads.Domain.Entities
         public string Phone { get; private set; }
         public string CPF { get; private set; }
         public ELeadStatus Status { get; private set; }
-        public Guid? InterestedPropertyId { get; private set; }
-        public Guid AgentId { get; private set; }
+        public int? InterestedPropertyId { get; private set; }
+        public int AgentId { get; private set; }
 
         protected Lead() { }
 
-        public Lead(string name, string email, string phone, string cpf, ELeadStatus status, Guid? interestedPropertyId, Guid agentId)
+        public Lead(string name, string email, string phone, string cpf, ELeadStatus status, int? interestedPropertyId, int agentId)
         {
             Name = name;
             Email = email;

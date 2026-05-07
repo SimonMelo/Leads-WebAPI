@@ -12,11 +12,11 @@ namespace Leads.Domain.Entities
         public Address Address { get; private set; }
         public EPropertyType Type { get; private set; } 
         // public List<PropertyImage> Images { get; private set; }
-        public Guid? AgentId { get; private set; }
+        public int? AgentId { get; private set; }
 
         protected Property() { }
 
-        public Property(string title, string description, decimal rentPrice, EPropertyStatus status, Address address, EPropertyType type, Guid? agentId)
+        public Property(string title, string description, decimal rentPrice, EPropertyStatus status, Address address, EPropertyType type, int? agentId)
         {
             Title = title;
             Description = description;
