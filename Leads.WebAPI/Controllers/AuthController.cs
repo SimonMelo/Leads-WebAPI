@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using Leads.Application.Features.Commands.Auth;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Leads.WebAPI.Controllers;
@@ -9,9 +10,15 @@ public class AuthController(IMediator mediator) : ControllerBase
 {
     [HttpPost]
     public async Task<IActionResult> Login(
-        [FromBody] object request,
+        [FromBody] AuthCommand command,
         CancellationToken cancellationToken)
     {
-        return Ok();
+        var response = await mediator.Send(
+            command,
+            cancellationToken);
+
+        return StatusCode(
+            response.StatusCode,
+            response);
     }
 }

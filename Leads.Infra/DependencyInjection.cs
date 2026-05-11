@@ -1,5 +1,6 @@
 ﻿using Leads.Application.Interfaces.Repositories;
 using Leads.Infra.Persistence;
+using Leads.Infra.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -19,9 +20,9 @@ namespace Leads.Infra
 
             // Repositories
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
-            //services.AddScoped<IAgentRepository, AgentRepository>();
-            //services.AddScoped<ILeadRepository, LeadRepository>();
-            //services.AddScoped<IPropertyRepository, PropertyRepository>();
+            services.AddScoped<IAgentRepository, AgentRepository>();
+            services.AddScoped<ILeadRepository, LeadRepository>();
+            services.AddScoped<IPropertyRepository, PropertyRepository>();
 
             // Unit of Work
             services.AddScoped<IUnitOfWork, UnitOfWork>();

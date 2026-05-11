@@ -6,15 +6,18 @@ namespace Leads.Domain.Entities
     {
         public string Name { get; private set; }
         public string Email { get; private set; }
+        public string Password { get; private set; }
         public string Phone { get; private set; }
         public string CPF { get; private set; }
         public string CRECI { get; private set; }
+        public bool IsAdmin { get; private set; }
+        public bool IsActive { get; private set; }
         public List<Property> Properties { get; private set; }
         public List<Lead> Leads { get; private set; }
 
         protected Agent() { }
 
-        public Agent(string name, string email, string phone, string cpf, string creci)
+        public Agent(string name, string email, string phone, string cpf, string creci, string password)
         {
             Name = name;
             Email = email;
@@ -23,6 +26,9 @@ namespace Leads.Domain.Entities
             CRECI = creci;
             Properties = new List<Property>();
             Leads = new List<Lead>();
+            Password = password;
+            IsActive = true;
+            IsAdmin = false;
         }
     }
 }

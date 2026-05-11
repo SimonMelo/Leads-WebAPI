@@ -1,4 +1,6 @@
-﻿namespace Leads.WebAPI;
+﻿using Leads.WebAPI.Middlewares;
+
+namespace Leads.WebAPI;
 
 public static class ApplicationBuilderExtensions
 {
@@ -13,6 +15,8 @@ public static class ApplicationBuilderExtensions
         }
 
         app.UseHttpsRedirection();
+
+        app.UseMiddleware<GlobalExceptionMiddleware>();
 
         app.UseAuthorization();
 
