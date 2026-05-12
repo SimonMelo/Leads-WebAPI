@@ -1,0 +1,13 @@
+﻿using Leads.Application.Errors.Base;
+
+namespace Leads.Application.Errors.Agent
+{
+    public static class AgentErrors
+    {
+        public static readonly BaseErrorApi ExistAgent =
+            new("EXIST_AGENT", "Corretor já cadastrado no sistema.");
+
+        public static readonly BaseErrorApi ErrorAddAgent =
+            new("ERROR_ADD_AGENT", "Houve um erro ao tentar cadastrar no sistema");
+    }
+}

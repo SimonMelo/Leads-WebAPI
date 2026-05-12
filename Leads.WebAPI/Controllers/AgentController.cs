@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using Leads.Application.Features.Commands.Agent;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Leads.WebAPI.Controllers;
@@ -25,10 +26,13 @@ public class AgentController(IMediator mediator) : ControllerBase
 
     [HttpPost]
     public async Task<IActionResult> Add(
-        [FromBody] object request,
+        [FromBody] AddAgentCommand command,
         CancellationToken cancellationToken)
     {
-        return Ok();
+        var response = await mediator.Send(command,
+            cancellationToken);
+
+        return StatusCode(response.StatusCode, response);
     }
 
     [HttpPut("{id:int}")]

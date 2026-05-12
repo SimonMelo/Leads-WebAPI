@@ -21,7 +21,6 @@
 
   <ItemGroup>
     <Folder Include="Features\Validators\Auth\" />
-    <Folder Include="Features\Validators\Agent\" />
     <Folder Include="Features\Validators\Lead\" />
     <Folder Include="Features\Validators\Property\" />
   </ItemGroup>
