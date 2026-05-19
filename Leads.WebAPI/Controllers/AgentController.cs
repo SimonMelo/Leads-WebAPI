@@ -1,5 +1,6 @@
 ﻿using Leads.Application.Features.Commands.Agent;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Leads.WebAPI.Controllers;
@@ -10,6 +11,7 @@ public class AgentController(IMediator mediator) : ControllerBase
 {
 
     [HttpGet]
+    [Authorize]
     public async Task<IActionResult> GetAll(
         CancellationToken cancellationToken)
     {
@@ -17,6 +19,7 @@ public class AgentController(IMediator mediator) : ControllerBase
     }
 
     [HttpGet("{id:int}")]
+    [Authorize]
     public async Task<IActionResult> GetById(
         int id,
         CancellationToken cancellationToken)
@@ -25,6 +28,7 @@ public class AgentController(IMediator mediator) : ControllerBase
     }
 
     [HttpPost]
+
     public async Task<IActionResult> Add(
         [FromBody] AddAgentCommand command,
         CancellationToken cancellationToken)
@@ -36,6 +40,7 @@ public class AgentController(IMediator mediator) : ControllerBase
     }
 
     [HttpPut("{id:int}")]
+    [Authorize]
     public async Task<IActionResult> Update(
         int id,
         [FromBody] object request,
@@ -45,6 +50,7 @@ public class AgentController(IMediator mediator) : ControllerBase
     }
 
     [HttpDelete("{id:int}")]
+    [Authorize]
     public async Task<IActionResult> Remove(
         int id,
         CancellationToken cancellationToken)

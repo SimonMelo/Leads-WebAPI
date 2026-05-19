@@ -3,17 +3,16 @@ using System.Security.Claims;
 using System.Text;
 using Leads.Application.Interfaces.Services.Token;
 using Leads.Domain.Entities;
-using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 
 namespace Leads.Application.Services.Auth;
 
-public class TokenService(IConfiguration configuration) : ITokenService
+public class TokenService()
+    : ITokenService
 {
-
     public string GenerateToken(Agent agent)
     {
-        var key = configuration["Jwt:Key"]!;
+        var key = Environment.GetEnvironmentVariable("JWT_KEY");
 
         var securityKey = new SymmetricSecurityKey(
             Encoding.UTF8.GetBytes(key));
@@ -24,16 +23,28 @@ public class TokenService(IConfiguration configuration) : ITokenService
 
         var claims = new[]
         {
-            new Claim("Identificador", agent.Id.ToString()),
-            new Claim("Email", agent.Email),
-            new Claim("Nome", agent.Name),
-            new Claim("CRECI", agent.CRECI),
-            new Claim("Role", agent.IsAdmin ? "Admin" : "Agent")
+            new Claim(
+                "Identifier",
+                agent.Id.ToString()),
+
+            new Claim(
+                "Email",
+                agent.Email),
+
+            new Claim(
+                "Name",
+                agent.Name),
+
+            new Claim(
+                "CRECI",
+                agent.CRECI),
+
+            
         };
 
         var token = new JwtSecurityToken(
-            issuer: configuration["Jwt:Issuer"],
-            audience: configuration["Jwt:Audience"],
+            issuer: Environment.GetEnvironmentVariable("JWT_ISSUER"),
+            audience: Environment.GetEnvironmentVariable("JWT_AUDIENCE"),
             claims: claims,
             expires: DateTime.UtcNow.AddHours(8),
             signingCredentials: credentials

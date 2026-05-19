@@ -18,6 +18,8 @@ public static class ApplicationBuilderExtensions
 
         app.UseMiddleware<GlobalExceptionMiddleware>();
 
+        app.UseAuthentication();
+
         app.UseAuthorization();
 
         app.MapControllers();

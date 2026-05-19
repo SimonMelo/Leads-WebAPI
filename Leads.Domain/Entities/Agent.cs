@@ -1,4 +1,5 @@
 ﻿using Leads.Domain.Entities.Base;
+using Leads.Domain.Enum;
 
 namespace Leads.Domain.Entities
 {
@@ -10,14 +11,16 @@ namespace Leads.Domain.Entities
         public string Phone { get; private set; }
         public string CPF { get; private set; }
         public string CRECI { get; private set; }
-        public bool IsAdmin { get; private set; }
+        public EAgentRole Role { get; private set; }
         public bool IsActive { get; private set; }
+        public int? OfficeId { get; private set; }
+        public Office Office { get; private set; }
         public List<Property> Properties { get; private set; }
         public List<Lead> Leads { get; private set; }
 
         protected Agent() { }
 
-        public Agent(string name, string email, string phone, string cpf, string creci, string password)
+        public Agent(string name, string email, string phone, string cpf, string creci, string password, EAgentRole role, int? officeId)
         {
             Name = name;
             Email = email;
@@ -28,7 +31,15 @@ namespace Leads.Domain.Entities
             Leads = new List<Lead>();
             Password = password;
             IsActive = true;
-            IsAdmin = false;
+            Role = role;
+            OfficeId = officeId;
         }
+        public void ChangeRole(EAgentRole newRole) => Role = newRole;
+
+        public void Deactivate() => IsActive = false;
+
+        public void AssignToOffice(int officeId) => OfficeId = officeId;
+
     }
+
 }

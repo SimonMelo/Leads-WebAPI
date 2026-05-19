@@ -19,7 +19,8 @@ namespace Leads.Application.Features.Validators.Agent
 
             RuleFor(x => x.Phone)
                 .NotEmpty()
-                .WithMessage("Telefone é obrigatório.");
+                .MinimumLength(11)
+                .WithMessage("Telefone inválido");
 
             RuleFor(x => x.CPF)
                 .NotEmpty()

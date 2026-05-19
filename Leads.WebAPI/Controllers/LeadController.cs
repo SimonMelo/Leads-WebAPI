@@ -1,4 +1,6 @@
-﻿using MediatR;
+﻿using Leads.Application.Features.Commands.Lead;
+using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Leads.WebAPI.Controllers;
@@ -8,6 +10,7 @@ namespace Leads.WebAPI.Controllers;
 public class LeadController(IMediator mediator) : ControllerBase
 {
     [HttpGet]
+    [Authorize]
     public async Task<IActionResult> GetAll(
         CancellationToken cancellationToken)
     {
@@ -15,6 +18,7 @@ public class LeadController(IMediator mediator) : ControllerBase
     }
 
     [HttpGet("{id:int}")]
+    [Authorize]
     public async Task<IActionResult> GetById(
         int id,
         CancellationToken cancellationToken)
@@ -23,14 +27,18 @@ public class LeadController(IMediator mediator) : ControllerBase
     }
 
     [HttpPost]
+    [Authorize]
     public async Task<IActionResult> Add(
-        [FromBody] object request,
+        [FromBody] AddLeadCommand command,
         CancellationToken cancellationToken)
     {
-        return Ok();
+        var response = await mediator.Send(command, cancellationToken);
+
+        return StatusCode(response.StatusCode, response);
     }
 
     [HttpPut("{id:int}")]
+    [Authorize]
     public async Task<IActionResult> Update(
         int id,
         [FromBody] object request,
@@ -40,6 +48,7 @@ public class LeadController(IMediator mediator) : ControllerBase
     }
 
     [HttpDelete("{id:int}")]
+    [Authorize]
     public async Task<IActionResult> Remove(
         int id,
         CancellationToken cancellationToken)

@@ -20,17 +20,6 @@ namespace Leads.Application.Features.Handlers.Agent
 
             var passwordHashed = passwordService.HashingPassword(command.Password);
 
-            var agent = new Domain.Entities.Agent(
-                command.Name,
-                command.Email,
-                command.Phone,
-                command.CPF,
-                command.Creci,
-                passwordHashed
-            );
-
-            await agentRepository.AddAsync(agent);
-
             var rowsAffected = await unitOfWork.CommitAsync();
 
             if (rowsAffected <= 0)
