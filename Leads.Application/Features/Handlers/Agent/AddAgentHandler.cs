@@ -3,7 +3,6 @@ using Leads.Application.Errors.Agent;
 using Leads.Application.Features.Commands.Agent;
 using Leads.Application.Interfaces.Repositories;
 using Leads.Application.Interfaces.Services.Password;
-using Leads.Domain.Entities;
 using MediatR;
 
 namespace Leads.Application.Features.Handlers.Agent
@@ -13,14 +12,19 @@ namespace Leads.Application.Features.Handlers.Agent
     {
         public async Task<ApiResponse<AddAgentResponse>> Handle(AddAgentCommand command, CancellationToken cancellationToken)
         {
-            var agentExist = await agentRepository.ExistAgentAsync(command.Email, command.Creci);
-
-            if (agentExist != null)
-                return ApiResponse<AddAgentResponse>.Fail(AgentErrors.ExistAgent, statusCode: 400);
-
             var passwordHashed = passwordService.HashingPassword(command.Password);
 
+            var agent = new Domain.Entities.Agent(command.Name, command.Email, command.Phone, command.CPF, command.Creci, passwordHashed, command.Role, command.OfficeId);
+
+            Console.WriteLine(command.Role);
+            Console.WriteLine(agent.Role);
+            await agentRepository.AddAsync(agent);
+
+            Console.WriteLine(command.Role.CompareTo(agent.Role));
+
             var rowsAffected = await unitOfWork.CommitAsync();
+            Console.WriteLine(command.Role);
+            Console.WriteLine(agent.Role);
 
             if (rowsAffected <= 0)
             {

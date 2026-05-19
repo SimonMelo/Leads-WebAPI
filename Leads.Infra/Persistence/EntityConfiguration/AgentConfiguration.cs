@@ -21,8 +21,8 @@ namespace Leads.Infra.Persistence.EntityConfiguration
             builder.Property(a => a.Role)
             .IsRequired()
             .HasConversion<string>()
-            .HasMaxLength(20)
-            .HasDefaultValue(EAgentRole.Agent);
+            .HasMaxLength(20);
+
             builder.Property(a => a.IsActive).IsRequired().HasDefaultValue(true);
             builder.HasIndex(a => a.Email).IsUnique();
             builder.HasIndex(a => a.CRECI).IsUnique();
@@ -30,11 +30,13 @@ namespace Leads.Infra.Persistence.EntityConfiguration
             builder.HasOne(a => a.Office)
             .WithMany(o => o.Agents)
             .HasForeignKey(a => a.OfficeId)
-            .OnDelete(DeleteBehavior.SetNull);
+            .OnDelete(DeleteBehavior.Restrict);
+
             builder.HasMany(a => a.Properties)
             .WithOne(p => p.Agent)
             .HasForeignKey(p => p.AgentId)
             .OnDelete(DeleteBehavior.SetNull);
+
             builder.HasMany(a => a.Leads)
             .WithOne(l => l.Agent)
             .HasForeignKey(l => l.AgentId)

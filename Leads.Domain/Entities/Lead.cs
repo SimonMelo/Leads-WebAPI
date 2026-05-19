@@ -11,6 +11,8 @@ namespace Leads.Domain.Entities
         public ELeadStatus? Status { get; private set; } = ELeadStatus.Novo;
         public int? InterestedPropertyId { get; private set; }
         public Agent Agent { get; private set; }
+        public Office Office { get; private set; }
+        public int OfficeId { get; private set; }
         public int? SourceId { get; private set; }
         public LeadSource Source { get; private set; }
         public Property InterestedProperty { get; private set; }
@@ -19,7 +21,7 @@ namespace Leads.Domain.Entities
 
         protected Lead() { }
 
-        public Lead(string name, string email, string phone, int agentId, ELeadStatus? status = ELeadStatus.Novo, int? interestedPropertyId = null, int? sourceId = null)
+        public Lead(string name, string email, string phone, int agentId, int officeId, ELeadStatus? status = ELeadStatus.Novo, int? interestedPropertyId = null, int? sourceId = null)
         {
             Name = name;
             Email = email;
@@ -28,6 +30,7 @@ namespace Leads.Domain.Entities
             Status = status;
             InterestedPropertyId = interestedPropertyId;
             AgentId = agentId;
+            OfficeId = officeId;
             Notes = new List<LeadNote>();
         }
 

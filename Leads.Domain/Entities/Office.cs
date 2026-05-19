@@ -13,18 +13,17 @@ namespace Leads.Domain.Entities
         public string? CNPJ { get; private set; }
         public string? Phone { get; private set; }
         public string? LogoUrl { get; private set; }
-        public bool IsActive { get; private set; }
-        public List<Agent> Agents { get; private set; }
+        public bool IsActive { get; private set; } = true;
+        public List<Agent>? Agents { get; private set; }
 
         protected Office() { }
 
-        public Office(string name, string? cnpj, string? phone, bool isActive, List<Agent> agents)
+        public Office(string name, string? cnpj, string? phone)
         {
             Name = name;
             CNPJ = cnpj;
             Phone = phone;
-            IsActive = isActive;
-            Agents = agents;
+            Agents = new List<Agent>();
         }
 
         public void UpdateLogo(string url) => LogoUrl = url;

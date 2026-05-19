@@ -1,5 +1,4 @@
 ﻿using Leads.Application.Common;
-using Leads.Application.Errors.Lead;
 using Leads.Application.Features.Commands.Lead;
 using Leads.Application.Interfaces.Context;
 using Leads.Application.Interfaces.Repositories;
@@ -11,13 +10,13 @@ namespace Leads.Application.Features.Handlers.Lead
     {
         public async Task<ApiResponse<AddLeadResponse>> Handle(AddLeadCommand request, CancellationToken cancellationToken)
         {
-            var leadExist = await leadRepository.ExistLeadAsync(request.Email, request.CPF);
-
-            if (leadExist)
-                return ApiResponse<AddLeadResponse>.Fail(LeadErrors.LeadExist, statusCode: 400);
-
             var agentId = userContext.UserId;
 
+            var officeId = userContext.OfficeId;
+
+            var lead = new Domain.Entities.Lead(request.Name, request.Email, request.Phone, agentId, officeId, sourceId: request.SourceId);
+
+            await leadRepository.AddAsync(lead);
 
             await unitOfWork.CommitAsync();
 

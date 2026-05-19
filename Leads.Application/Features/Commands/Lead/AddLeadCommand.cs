@@ -6,10 +6,10 @@ namespace Leads.Application.Features.Commands.Lead
 {
     public class AddLeadCommand : IRequest<ApiResponse<AddLeadResponse>>
     {
-        public string Name { get; set; }
-        public string CPF { get; set; }
-        public string Phone { get; set; }
-        public string Email { get; set; }
+        public required string Name { get; set; }
+        public required string Phone { get; set; }
+        public required string Email { get; set; }
+        public int? SourceId { get; set; }
         public ELeadStatus? Status { get; set; }
     }
 

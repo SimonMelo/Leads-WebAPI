@@ -2,6 +2,7 @@
 using Leads.Domain.Entities.Base;
 using Leads.Infra.Persistence;
 using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 
 public class Repository<T> : IRepository<T> where T : BaseEntity
 {
@@ -25,17 +26,17 @@ public class Repository<T> : IRepository<T> where T : BaseEntity
     }
 
     public async Task AddAsync(T entity)
-    {
-        await _dbSet.AddAsync(entity);
-    }
-
+        => await _dbSet.AddAsync(entity);
+    
     public void Update(T entity)
-    {
-        _dbSet.Update(entity);
-    }
+        => _dbSet.Update(entity);
+
+    public Task<bool> ExistsAsync(Expression<Func<T, bool>> predicate, CancellationToken ct = default)
+        => _dbSet.AnyAsync(predicate, ct);
+
+    public Task<bool> NotExistsAsync(Expression<Func<T, bool>> predicate, CancellationToken ct = default)
+        => _dbSet.AnyAsync(predicate, ct).ContinueWith(t => !t.Result, ct);
 
     public void Remove(T entity)
-    {
-        _dbSet.Remove(entity);
-    }
+        => _dbSet.Remove(entity);
 }

@@ -39,6 +39,9 @@ public class TokenService()
                 "CRECI",
                 agent.CRECI),
 
+            new Claim(
+                "OfficeId",
+                agent.OfficeId.ToString()),
             
         };
 

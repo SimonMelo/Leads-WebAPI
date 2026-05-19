@@ -34,6 +34,10 @@ namespace Leads.Infra.Persistence.EntityConfiguration
            .HasForeignKey(l => l.AgentId)
            .OnDelete(DeleteBehavior.Restrict);
 
+            builder.HasIndex(l => new { l.Email, l.OfficeId })
+            .IsUnique()
+            .HasDatabaseName("IX_Leads_Email_OfficeId");
+
             builder.HasMany(l => l.Notes)
             .WithOne(n => n.Lead)
             .HasForeignKey(n => n.LeadId)

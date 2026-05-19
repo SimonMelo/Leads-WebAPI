@@ -1,6 +1,5 @@
 ﻿using Leads.Application.Interfaces.Context;
 using Microsoft.AspNetCore.Http;
-using System.Security.Claims;
 
 namespace Leads.Infra.Context
 {
@@ -13,10 +12,24 @@ namespace Leads.Infra.Context
                 var userId = httpContextAccessor
                     .HttpContext?
                     .User?
-                    .FindFirst(ClaimTypes.NameIdentifier)?
+                    .FindFirst("Identifier")?
                     .Value;
 
                 return int.Parse(userId!);
+            }
+        }
+
+        public int OfficeId
+        {
+            get
+            {
+                var officeId = httpContextAccessor
+                    .HttpContext?
+                    .User?
+                    .FindFirst("OfficeId")?
+                    .Value;
+
+                return int.Parse(officeId!);
             }
         }
 
@@ -27,7 +40,7 @@ namespace Leads.Infra.Context
                 return httpContextAccessor
                     .HttpContext?
                     .User?
-                    .FindFirst(ClaimTypes.Email)?
+                    .FindFirst("Email")?
                     .Value ?? string.Empty;
             }
         }
