@@ -42,6 +42,10 @@ public class TokenService()
             new Claim(
                 "OfficeId",
                 agent.OfficeId.ToString()),
+
+            new Claim(
+                ClaimTypes.Role,
+                agent.Role.ToString())
             
         };
 
