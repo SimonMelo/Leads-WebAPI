@@ -1,4 +1,6 @@
-﻿using MediatR;
+﻿using Leads.Application.Features.Commands.Property;
+using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Leads.WebAPI.Controllers;
@@ -23,11 +25,14 @@ public class PropertyController(IMediator mediator) : ControllerBase
     }
 
     [HttpPost]
+    [Authorize(Roles = "Agent, SystemAdmin")]
     public async Task<IActionResult> Add(
-        [FromBody] object request,
+        [FromBody] AddPropertyCommand command,
         CancellationToken cancellationToken)
     {
-        return Ok();
+        var response = await mediator.Send(command, cancellationToken);
+
+        return StatusCode(response.StatusCode, response);
     }
 
     [HttpPut("{id:int}")]

@@ -19,8 +19,4 @@
     <ProjectReference Include="..\Leads.Domain\Leads.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Features\Validators\Property\" />
-  </ItemGroup>
-
 </Project>

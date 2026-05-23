@@ -20,6 +20,8 @@ namespace Leads.Infra.Persistence.EntityConfiguration
             builder.Property(p => p.Bathrooms).IsRequired().HasDefaultValue(0);
             builder.Property(p => p.Status)
             .IsRequired().HasConversion<string>().HasMaxLength(20);
+            builder.Property(p => p.ListingType)
+                .IsRequired().HasConversion<string>().HasMaxLength(20);
             builder.Property(p => p.Type)
             .IsRequired().HasConversion<string>().HasMaxLength(20);
 

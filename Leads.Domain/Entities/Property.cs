@@ -9,7 +9,8 @@ namespace Leads.Domain.Entities
         public string Description { get; private set; }
         public decimal? RentPrice { get; private set; }
         public decimal? SalePrice { get; private set; }
-        public EPropertyStatus Status { get; private set; } 
+        public EPropertyStatus Status { get; private set; }
+        public EListingType ListingType { get; private set; }
         public Address Address { get; private set; }
         public decimal AreaM2 { get; private set; }
         public EPropertyType Type { get; private set; }
@@ -23,12 +24,14 @@ namespace Leads.Domain.Entities
 
         public Property(string title, string description, decimal? rentPrice, decimal? salePrice,
             int? bedrooms, int? bathrooms, decimal aream2,
+            EListingType eListingType,
             EPropertyStatus status, Address address, EPropertyType type, int? agentId)
         {
             Title = title;
             Description = description;
             RentPrice = rentPrice;
             SalePrice = salePrice;
+            ListingType = eListingType;
             Bedrooms = bedrooms;
             Bathrooms = bathrooms;
             AreaM2 = aream2;
