@@ -1,4 +1,4 @@
-﻿using Leads.Application.Interfaces.Repositories;
+﻿using Leads.Domain.Interfaces.Repositories;
 using Leads.Domain.Entities;
 using Leads.Infra.Persistence;
 

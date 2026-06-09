@@ -27,7 +27,7 @@
       "applicationUrl": "https://localhost:7052;http://localhost:5070",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "ConnectionStrings_DB": "Server=localhost;Port=3306;Database=leads_webapi_db;User Id=root;Password=;",
+        "ConnectionStrings_DB": "Server=localhost;Port=3306;Database=leads_webapi_db;User Id=root;Password=C4$4M3l0;",
         "JWT_KEY": "7438293475923128953783244982315432",
         "JWT_ISSUER": "LeadsAPI",
         "JWT_AUDIENCE": "LeadsClient"
