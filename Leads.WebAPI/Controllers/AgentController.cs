@@ -1,4 +1,4 @@
-﻿using Leads.Application.Features.Commands.Agent;
+﻿using Leads.Application.Features.Commands.Agents;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -28,7 +28,7 @@ public class AgentController(IMediator mediator) : ControllerBase
     }
 
     [HttpPost]
-
+    [Authorize]
     public async Task<IActionResult> Add(
         [FromBody] AddAgentCommand command,
         CancellationToken cancellationToken)

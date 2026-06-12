@@ -27,7 +27,6 @@ public class OfficeController(IMediator mediator) : ControllerBase
     }
 
     [HttpPost]
-    [Authorize(Roles = "SystemAdmin")]
     public async Task<IActionResult> Add(
         [FromBody] AddOfficeCommand command,
         CancellationToken cancellationToken)

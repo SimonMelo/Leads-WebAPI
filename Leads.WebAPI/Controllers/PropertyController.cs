@@ -25,9 +25,9 @@ public class PropertyController(IMediator mediator) : ControllerBase
     }
 
     [HttpPost]
-    [Authorize(Roles = "Agent, SystemAdmin")]
+    [Authorize]
     public async Task<IActionResult> Add(
-        [FromBody] AddPropertyCommand command,
+        [FromForm] AddPropertyCommand command,
         CancellationToken cancellationToken)
     {
         var response = await mediator.Send(command, cancellationToken);

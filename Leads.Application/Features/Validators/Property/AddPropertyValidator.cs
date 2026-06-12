@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using Leads.Application.Features.Commands.Agent;
+using Leads.Application.Features.Commands.Agents;
 using Leads.Application.Features.Commands.Property;
 using Leads.Application.Features.Validators.Property.Common;
 using Leads.Domain.Enum;
@@ -49,6 +49,22 @@ namespace Leads.Application.Features.Validators.Property
                 .NotEmpty()
                 .WithMessage("Endereço é obrigatório.")
                 .SetValidator(new AddressDtoValidator());
+            
+            RuleForEach(p => p.Photos)
+                .ChildRules(photo =>
+                {
+                    photo.RuleFor(p => p.Length)
+                        .LessThanOrEqualTo(5 * 1024 * 1024)
+                        .WithMessage("Cada imagem deve ter no máximo 5MB");
+
+                    photo.RuleFor(p => p.ContentType)
+                        .Must(ct => new[] { "image/jpeg", "image/jpg", "image/webp", "image/png" }.Contains(ct))
+                        .WithMessage("Apenas imagens JPG, JPEG, PNG, WEBP são permitidas.");
+                }).When(p => p.Photos != null && p.Photos.Any());
+
+            RuleFor(p => p.Photos)
+                .Must(photos => photos == null || photos.Count <= 10)
+                .WithMessage("Máximo de 10 fotos por imóvel");
         }
     }
 }

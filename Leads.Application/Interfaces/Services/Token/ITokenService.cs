@@ -1,9 +1,7 @@
-﻿using Leads.Domain.Entities;
-
-namespace Leads.Application.Interfaces.Services.Token
+﻿namespace Leads.Application.Interfaces.Services.Token
 {
     public interface ITokenService
     {
-        string GenerateToken(Agent agent);
+        string GenerateToken(Leads.Domain.Entities.Agent agent);
     }
 }

@@ -4,7 +4,7 @@ namespace Leads.Domain.Entities
 {
     public class PropertyPhotos : BaseEntity
     {
-        public string Url { get; private set; }
+        public string StoragePath  { get; private set; }
         public int Order { get; private set; }
         public bool IsPrimary { get; private set; }
         public int PropertyId { get; private set; }
@@ -12,9 +12,9 @@ namespace Leads.Domain.Entities
 
         protected PropertyPhotos() { }
 
-        public PropertyPhotos(string url, int order, bool isPrimary, int propertyId)
+        public PropertyPhotos(string storagePath, int order, bool isPrimary, int propertyId)
         {
-            Url = url;
+            StoragePath  = storagePath;
             Order = order;
             IsPrimary = isPrimary;
             PropertyId = propertyId;

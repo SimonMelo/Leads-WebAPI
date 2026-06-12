@@ -1,7 +1,7 @@
 ﻿using Leads.Application.Interfaces.Services.Password;
 using Leads.Application.Interfaces.Services.Token;
-using Leads.Application.Services.Auth;
 using Leads.Application.Services.Password;
+using Leads.Application.Services.Token;
 using Leads.Application.Services.Validators;
 using Microsoft.Extensions.DependencyInjection;
 

@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using Leads.Application.Features.Commands.Lead;
 using Leads.Application.Interfaces.Context;
-using Leads.Application.Interfaces.Repositories;
+using Leads.Domain.Interfaces.Repositories;
 
 namespace Leads.Application.Features.Validators.Lead
 {

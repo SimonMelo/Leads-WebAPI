@@ -1,6 +1,6 @@
-﻿using Leads.Application.Errors.Base;
+﻿using Leads.Domain.Errors.Base;
 
-namespace Leads.Application.Errors.Agent
+namespace Leads.Domain.Errors.Agents
 {
     public static class AgentErrors
     {

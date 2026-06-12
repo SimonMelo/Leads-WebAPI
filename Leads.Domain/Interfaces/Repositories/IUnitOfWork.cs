@@ -1,4 +1,4 @@
-﻿namespace Leads.Application.Interfaces.Repositories
+﻿namespace Leads.Domain.Interfaces.Repositories
 {
     public interface IUnitOfWork : IDisposable
     {

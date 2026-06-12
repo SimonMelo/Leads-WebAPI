@@ -45,6 +45,7 @@ public static class DependencyInjection
                             new SymmetricSecurityKey(
                                 Encoding.UTF8.GetBytes(
                                     Environment.GetEnvironmentVariable("JWT_KEY")
+                                    ?? throw new ArgumentNullException()
                                 )
                             )
                     };

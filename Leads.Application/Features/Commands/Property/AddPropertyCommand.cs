@@ -2,6 +2,7 @@
 using Leads.Application.Features.Commands.Property.Common;
 using Leads.Domain.Enum;
 using MediatR;
+using Microsoft.AspNetCore.Http;
 
 namespace Leads.Application.Features.Commands.Property
 {
@@ -14,7 +15,7 @@ namespace Leads.Application.Features.Commands.Property
         public EPropertyStatus Status { get; set; }
         public EListingType ListingType { get; set; }
         public required AddressDto Address { get; set; }
-        public PropertyPhotoDto? PropertyPhoto { get; set; }
+        public List<IFormFile>? Photos { get; set; }
         public required decimal AreaM2 { get; set; }
         public required EPropertyType Type { get; set; }
         public int? Bedrooms { get; set; }

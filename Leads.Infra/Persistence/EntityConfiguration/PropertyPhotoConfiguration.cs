@@ -10,7 +10,7 @@ namespace Leads.Infra.Persistence.EntityConfiguration
         {
             builder.ToTable("PropertyPhotos");
             builder.HasKey(ph => ph.Id);
-            builder.Property(ph => ph.Url).IsRequired().HasMaxLength(500);
+            builder.Property(ph => ph.StoragePath).IsRequired().HasMaxLength(500);
             builder.Property(ph => ph.Order).IsRequired().HasDefaultValue(0);
             builder.Property(ph => ph.IsPrimary).IsRequired().HasDefaultValue(false);
             builder.HasOne(ph => ph.Property)

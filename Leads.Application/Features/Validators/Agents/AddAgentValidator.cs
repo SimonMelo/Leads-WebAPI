@@ -1,9 +1,9 @@
 ﻿using FluentValidation;
-using Leads.Application.Features.Commands.Agent;
-using Leads.Application.Interfaces.Repositories;
+using Leads.Application.Features.Commands.Agents;
+using Leads.Domain.Interfaces.Repositories;
 using Leads.Application.Services.Validators;
 
-namespace Leads.Application.Features.Validators.Agent
+namespace Leads.Application.Features.Validators.Agents
 {
     public class AddAgentCommandValidator : AbstractValidator<AddAgentCommand>
     {

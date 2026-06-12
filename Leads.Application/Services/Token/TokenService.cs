@@ -1,16 +1,15 @@
-﻿using System.IdentityModel.Tokens.Jwt;
+using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using Leads.Application.Interfaces.Services.Token;
-using Leads.Domain.Entities;
 using Microsoft.IdentityModel.Tokens;
 
-namespace Leads.Application.Services.Auth;
+namespace Leads.Application.Services.Token;
 
 public class TokenService()
     : ITokenService
 {
-    public string GenerateToken(Agent agent)
+    public string GenerateToken(Leads.Domain.Entities.Agent agent)
     {
         var key = Environment.GetEnvironmentVariable("JWT_KEY");
 

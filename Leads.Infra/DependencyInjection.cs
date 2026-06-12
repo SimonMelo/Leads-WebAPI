@@ -1,11 +1,14 @@
 ﻿using Leads.Application.Interfaces.Context;
-using Leads.Application.Interfaces.Repositories;
+using Leads.Domain.Interfaces.Repositories;
+using Leads.Domain.Interfaces.Services;
 using Leads.Infra.Context;
 using Leads.Infra.Persistence;
 using Leads.Infra.Repositories;
+using Leads.Infra.Storage.Service;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Minio;
 
 namespace Leads.Infra
 {
@@ -32,6 +35,15 @@ namespace Leads.Infra
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
+            services.AddScoped<IStorageService, StorageService>();
+            
+            services.AddMinio(minioConfig => minioConfig
+                .WithEndpoint(Environment.GetEnvironmentVariable("MINIO_ENDPOINT"))
+                .WithCredentials(Environment.GetEnvironmentVariable("MINIO_ACCESS_KEY"), 
+                    Environment.GetEnvironmentVariable("MINIO_SECRET_KEY"))
+                .WithSSL(false)
+                .Build());
+            
             return services;
         }
     }

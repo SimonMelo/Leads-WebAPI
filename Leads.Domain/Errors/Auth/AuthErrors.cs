@@ -1,11 +1,6 @@
-﻿using Leads.Application.Errors.Base;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Leads.Domain.Errors.Base;
 
-namespace Leads.Application.Errors.Auth
+namespace Leads.Domain.Errors.Auth
 {
     public static class AuthErrors
     {

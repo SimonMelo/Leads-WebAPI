@@ -2,7 +2,7 @@
 using Leads.Domain.Enum;
 using MediatR;
 
-namespace Leads.Application.Features.Commands.Agent
+namespace Leads.Application.Features.Commands.Agents
 {
     public class AddAgentCommand : IRequest<ApiResponse<AddAgentResponse>>
     {

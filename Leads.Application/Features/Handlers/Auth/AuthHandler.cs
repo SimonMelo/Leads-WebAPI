@@ -1,7 +1,7 @@
 ﻿using Leads.Application.Common;
-using Leads.Application.Errors.Auth;
+using Leads.Domain.Errors.Auth;
 using Leads.Application.Features.Commands.Auth;
-using Leads.Application.Interfaces.Repositories;
+using Leads.Domain.Interfaces.Repositories;
 using Leads.Application.Interfaces.Services.Password;
 using Leads.Application.Interfaces.Services.Token;
 using MediatR;

@@ -1,4 +1,4 @@
-﻿namespace Leads.Application.Errors.Base
+﻿namespace Leads.Domain.Errors.Base
 {
     public record BaseErrorApi(string Key, string Message);
 }

@@ -13,7 +13,7 @@ public static class ApplicationBuilderExtensions
 
             app.UseSwaggerUI();
         }
-
+        
         app.UseHttpsRedirection();
 
         app.UseMiddleware<GlobalExceptionMiddleware>();

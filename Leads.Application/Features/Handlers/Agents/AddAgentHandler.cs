@@ -1,11 +1,11 @@
 ﻿using Leads.Application.Common;
-using Leads.Application.Errors.Agent;
-using Leads.Application.Features.Commands.Agent;
-using Leads.Application.Interfaces.Repositories;
+using Leads.Domain.Errors.Agents;
+using Leads.Application.Features.Commands.Agents;
+using Leads.Domain.Interfaces.Repositories;
 using Leads.Application.Interfaces.Services.Password;
 using MediatR;
 
-namespace Leads.Application.Features.Handlers.Agent
+namespace Leads.Application.Features.Handlers.Agents
 {
     public class AddAgentHandler(IAgentRepository agentRepository, IPasswordService passwordService,
         IUnitOfWork unitOfWork) : IRequestHandler<AddAgentCommand, ApiResponse<AddAgentResponse>>

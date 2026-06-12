@@ -1,5 +1,5 @@
 ﻿using Leads.Application.Common;
-using Leads.Application.Errors.Base;
+using Leads.Domain.Errors.Base;
 
 namespace Leads.WebAPI.Middlewares;
 

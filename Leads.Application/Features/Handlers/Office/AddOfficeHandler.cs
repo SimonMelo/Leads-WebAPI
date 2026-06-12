@@ -1,6 +1,6 @@
 ﻿using Leads.Application.Common;
 using Leads.Application.Features.Commands.Office;
-using Leads.Application.Interfaces.Repositories;
+using Leads.Domain.Interfaces.Repositories;
 using MediatR;
 
 namespace Leads.Application.Features.Handlers.Office

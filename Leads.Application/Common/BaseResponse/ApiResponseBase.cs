@@ -1,4 +1,4 @@
-﻿using Leads.Application.Errors.Base;
+﻿using Leads.Domain.Errors.Base;
 
 namespace Leads.Application.Common.BaseResponse;
 
