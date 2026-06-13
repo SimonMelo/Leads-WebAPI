@@ -18,10 +18,12 @@ public class PropertyController(IMediator mediator) : ControllerBase
 
     [HttpGet("{id:int}")]
     public async Task<IActionResult> GetById(
-        int id,
+        [FromRoute] int id,
         CancellationToken cancellationToken)
     {
-        return Ok();
+        var response = await mediator.Send(new GetPropertyById(id), cancellationToken);
+
+        return StatusCode(response.StatusCode, response);
     }
 
     [HttpPost]
